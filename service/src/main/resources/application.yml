@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: dev
+  redis:
+    host: localhost
+    port: 16379
+    password: s2u2m1234
+  session:
+    store-type: redis
