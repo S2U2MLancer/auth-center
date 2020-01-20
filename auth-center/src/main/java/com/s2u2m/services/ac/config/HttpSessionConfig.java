@@ -1,4 +1,4 @@
-package com.s2u2m.services.ac.cofig;
+package com.s2u2m.services.ac.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
