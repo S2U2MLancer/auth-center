@@ -1,5 +1,8 @@
 package com.s2u2m.services.ac.config;
 
+import com.s2u2m.services.ac.AppContextProvider;
+import com.s2u2m.services.ac.service.account.AccountDetailsService;
+import com.s2u2m.services.ac.service.account.UsernameAccountDetailsService;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,10 +26,10 @@ public class WebSecurityConfig {
         return NoOpPasswordEncoder.getInstance();
     }
 
-
     @Configuration
     @Order(SecurityProperties.BASIC_AUTH_ORDER - 10)
     public static class UsernameWebSecurityConfig extends WebSecurityConfigurerAdapter {
+
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable();
@@ -40,15 +43,8 @@ public class WebSecurityConfig {
         @Override
         protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 //            super.configure(auth);
-            auth.userDetailsService(usernameUserDetailsService());
-        }
-
-        protected UserDetailsService usernameUserDetailsService(){
-            String finalPassword = "123456";
-            InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-            manager.createUser(User.withUsername("user_1").password(finalPassword).authorities("USER").build());
-            manager.createUser(User.withUsername("user_2").password(finalPassword).authorities("USER").build());
-            return manager;
+            AccountDetailsService detailsService = AppContextProvider.getContext().getBean(UsernameAccountDetailsService.class);
+            auth.userDetailsService(detailsService);
         }
     }
 
