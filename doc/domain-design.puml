@@ -1,0 +1,10 @@
+@startuml "Domain Design"
+
+class Account
+class UsernameAccount extends Account
+class PhoneAccount extends Account
+
+class User
+User "1" *--> "1..*" Account
+
+@enduml

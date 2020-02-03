@@ -1,0 +1,35 @@
+@startuml "Authorization Design"
+
+package SpringSecurity {
+
+abstract class WebSecurityConfigurerAdapter
+
+abstract class AbstractAuthenticationToken implements Authentication
+class UsernamePasswordAuthenticationToken extends AbstractAuthenticationToken
+
+
+interface UserDetails
+interface UserDetailsService
+UserDetailsService --> UserDetails: loadUserByUsername
+}
+
+package S2u2mLogin {
+abstract class AccountDetails implements UserDetails
+abstract class AccountDetailsService<T extends AccountDetails> implements UserDetailsService
+AccountDetailsService --> AccountDetails: loadAccount
+}
+
+package UsernameLogin {
+
+class UsernameAccount extends AccountDetails
+class UsernameAccountDetailsService extends AccountDetailsService
+UsernameAccountDetailsService --> UsernameAccount: bind
+
+class UsernameWebSecurityConfig extends WebSecurityConfigurerAdapter
+UsernameWebSecurityConfig --> UsernameAccountDetailsService: use
+
+class UsernameLoginEndpoint
+
+}
+
+@enduml

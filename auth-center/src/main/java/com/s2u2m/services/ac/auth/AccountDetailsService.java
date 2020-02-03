@@ -1,16 +1,15 @@
-package com.s2u2m.services.ac.service.account;
+package com.s2u2m.services.ac.auth;
 
-import com.s2u2m.services.ac.account.AccountDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-public abstract class AccountDetailsService implements UserDetailsService {
+public abstract class AccountDetailsService<T extends AccountDetails> implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String identity) throws UsernameNotFoundException {
         return this.loadAccount(identity);
     }
 
-    protected abstract AccountDetails loadAccount(String identity);
+    protected abstract T loadAccount(String identity);
 }

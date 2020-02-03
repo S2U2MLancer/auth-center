@@ -1,4 +1,4 @@
-package com.s2u2m.services.ac.config.oauth2;
+package com.s2u2m.services.ac.auth.oauth2;
 //
 //import com.s2u2m.services.ac.auth.oauth2.S2u2mClientDetailsService;
 //import org.springframework.beans.factory.annotation.Autowired;

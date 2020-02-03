@@ -1,12 +1,13 @@
-package com.s2u2m.services.ac.account;
+package com.s2u2m.services.ac.auth.username;
 
+import com.s2u2m.services.ac.auth.AccountDetails;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
 @Getter
-public class UsernameAccount extends AccountDetails {
+public final class UsernameAccount extends AccountDetails {
     private final String password;
 
     public UsernameAccount(String username, String userId, String password) {
@@ -21,28 +22,26 @@ public class UsernameAccount extends AccountDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return this.password;
     }
-
-
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

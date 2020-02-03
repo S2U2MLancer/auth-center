@@ -1,8 +1,5 @@
-package com.s2u2m.services.ac.config;
+package com.s2u2m.services.ac.auth;
 
-import com.s2u2m.services.ac.AppContextProvider;
-import com.s2u2m.services.ac.service.account.AccountDetailsService;
-import com.s2u2m.services.ac.service.account.UsernameAccountDetailsService;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,28 +21,6 @@ public class WebSecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
-    }
-
-    @Configuration
-    @Order(SecurityProperties.BASIC_AUTH_ORDER - 10)
-    public static class UsernameWebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable();
-            http.antMatcher("/login/username")
-                    .authorizeRequests()
-                    .antMatchers("/login/username").permitAll()
-                    .anyRequest().authenticated();
-            http.httpBasic();
-        }
-
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//            super.configure(auth);
-            AccountDetailsService detailsService = AppContextProvider.getContext().getBean(UsernameAccountDetailsService.class);
-            auth.userDetailsService(detailsService);
-        }
     }
 
     @Configuration

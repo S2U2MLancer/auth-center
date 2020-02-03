@@ -8,10 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/login")
 public class LoginController {
 
-    @PostMapping("/username")
-    public String username() {
-        return "username";
-    }
+
 
     @PostMapping("/phone")
     public String phone() {

@@ -1,5 +1,6 @@
-package com.s2u2m.services.ac.account;
+package com.s2u2m.services.ac.repo.account;
 
+import com.s2u2m.services.ac.auth.username.UsernameAccount;
 import org.springframework.stereotype.Repository;
 
 import java.util.Map;
@@ -15,6 +16,8 @@ public class AccountRepoImpl implements AccountRepo {
         if (!accounts.containsKey(identity)) {
             return null;
         }
-        return new UsernameAccount(identity, accounts.get(identity));
+        var userId = "";
+        var password = accounts.get(identity);
+        return new UsernameAccount(identity, userId, password);
     }
 }

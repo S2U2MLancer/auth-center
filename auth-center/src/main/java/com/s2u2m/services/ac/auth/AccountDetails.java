@@ -1,4 +1,4 @@
-package com.s2u2m.services.ac.account;
+package com.s2u2m.services.ac.auth;
 
 import lombok.Getter;
 import org.springframework.security.core.userdetails.UserDetails;
